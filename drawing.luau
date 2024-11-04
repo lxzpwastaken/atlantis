@@ -8,7 +8,6 @@ local Name = Player.DisplayName or Player.Name or 'Unknown';
 local PlayerId = Player.UserId;
 
 local Game = MarketplaceService:GetProductInfo(game.PlaceId).Name;
-updateuiprocinfo(Name, Game, PlayerId)
 	   
 repeat wait() until game:IsLoaded() -- precaution
 
