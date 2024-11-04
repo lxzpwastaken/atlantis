@@ -1009,6 +1009,7 @@ genv.Drawing = drawing;
 genv.cleardrawcache = drawing.clear;
 
 genv.isrenderobj = newcclosure(function(x)
+	warn("erm: "..tostring(x))
 	return tostring(x) == "Drawing";
 end);
 
