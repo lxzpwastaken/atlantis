@@ -1017,15 +1017,15 @@ local _isrenderobj = clonefunction(isrenderobj);
 
 genv.getrenderproperty = newcclosure(function(x, y)
 	warn(x,y)
-	_assert(_isrenderobj(x), _stringformat("invalid argument #1 to 'getrenderproperty' (Drawing expected, got %s)", _typeof(x)));
-	_assert(x.__OBJECT_EXISTS, "object doesnt exist")
+	assert(_isrenderobj(x), string.format("invalid argument #1 to 'getrenderproperty' (Drawing expected, got %s)", typeof(x)));
+	assert(x.__OBJECT_EXISTS, "object doesnt exist")
 	return x[y];
 end);
 
 genv.setrenderproperty = newcclosure(function(x, y, z)
 	warn(x,y,z)
-	_assert(_isrenderobj(x), _stringformat("invalid argument #1 to 'setrenderproperty' (Drawing expected, got %s)", _typeof(x)));
-	_assert(x.__OBJECT_EXISTS, "object doesnt exist")
+	assert(_isrenderobj(x), string.format("invalid argument #1 to 'setrenderproperty' (Drawing expected, got %s)", typeof(x)));
+	assert(x.__OBJECT_EXISTS, "object doesnt exist")
 	x[y] = z;
 end);
 
