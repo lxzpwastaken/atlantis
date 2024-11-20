@@ -3,11 +3,6 @@ if not game:IsLoaded() then
 end
 
 local Player = game:GetService('Players').LocalPlayer;
-local MarketplaceService = game:GetService('MarketplaceService');
-local Name = Player.DisplayName or Player.Name or 'Unknown';
-local PlayerId = Player.UserId;
-
-local Game = MarketplaceService:GetProductInfo(game.PlaceId).Name;
 	   
 repeat wait() until game:IsLoaded() -- precaution
 
