@@ -6,9 +6,9 @@ local Player = game:GetService('Players').LocalPlayer;
 	   
 repeat wait() until game:IsLoaded() -- precaution
 
-getgenv().isnetworkowner = newcclosure(function(part: BasePart): boolean
+getgenv().isnetworkowner = function(part: BasePart): boolean
     return part.ReceiveAge == 0 and not part.Anchored and part.Velocity.Magnitude > 0;
-end);
+end;
 
 --[[ Variables ]]--
 
@@ -29,25 +29,25 @@ local genv = getgenv();
 local pi = renv.math.pi;
 local huge = renv.math.huge;
 
-local _assert = clonefunction(renv.assert);
-local _color3new = clonefunction(renv.Color3.new);
-local _instancenew = clonefunction(renv.Instance.new);
-local _mathatan2 = clonefunction(renv.math.atan2);
-local _mathclamp = clonefunction(renv.math.clamp);
-local _mathmax = clonefunction(renv.math.max);
-local _setmetatable = clonefunction(renv.setmetatable);
-local _stringformat = clonefunction(renv.string.format);
-local _typeof = clonefunction(renv.typeof);
-local _taskspawn = clonefunction(renv.task.spawn);
-local _udimnew = clonefunction(renv.UDim.new);
-local _udim2fromoffset = clonefunction(renv.UDim2.fromOffset);
-local _udim2new = clonefunction(renv.UDim2.new);
-local _vector2new = clonefunction(renv.Vector2.new);
+local _assert = (renv.assert);
+local _color3new = (renv.Color3.new);
+local _instancenew = (renv.Instance.new);
+local _mathatan2 = (renv.math.atan2);
+local _mathclamp = (renv.math.clamp);
+local _mathmax = (renv.math.max);
+local _setmetatable = (renv.setmetatable);
+local _stringformat = (renv.string.format);
+local _typeof = (renv.typeof);
+local _taskspawn = (renv.task.spawn);
+local _udimnew = (renv.UDim.new);
+local _udim2fromoffset = (renv.UDim2.fromOffset);
+local _udim2new = (renv.UDim2.new);
+local _vector2new = (renv.Vector2.new);
 
-local _destroy = clonefunction(game.Destroy);
-local _gettextboundsasync = clonefunction(textService.GetTextBoundsAsync);
+local _destroy = (game.Destroy);
+local _gettextboundsasync = (textService.GetTextBoundsAsync);
 
-local _httpget = clonefunction(game.HttpGet);
+local _httpget = (game.HttpGet);
 local _writecustomasset = function(path, data)
 	writefile(path,data)
 	return getcustomasset(path)
@@ -981,17 +981,17 @@ do
 		classes.Quad = quad;
 	end
 
-    drawing.new = newcclosure(function(x)
+    drawing.new = function(x)
         return _assert(classes[x], _stringformat("Invalid drawing type '%s'", x)).new();
-    end);
+    end;
 
-    drawing.clear = newcclosure(function()
+    drawing.clear = function()
         for i, v in cache do
 			if v.__OBJECT_EXISTS then
 				v:Destroy();
 			end
         end
-    end);
+    end;
 
 	drawing.cache = cache;
 end
@@ -1003,11 +1003,23 @@ setreadonly(drawing.Fonts, true);
 genv.Drawing = drawing;
 genv.cleardrawcache = drawing.clear;
 
-genv.isrenderobj = newcclosure(function(x)
+genv.isrenderobj = function(x)
 	--warn("erm: "..tostring(x))
 	return tostring(x) == "Drawing";
-end);
+end;
 
-local _isrenderobj = clonefunction(isrenderobj);
+local _isrenderobj = (isrenderobj);
+
+getgenv().getrenderproperty = function(x, y)
+	assert(isrenderobj(x), 'invalid drawing object')
+    
+    return x[y];
+end
+
+getgenv().setrenderproperty = function(x, y, z)
+    assert(isrenderobj(x), 'invalid drawing object')
+    x[y] = z;
+end
 
 genv.DRAWING_LOADED = true;
+
